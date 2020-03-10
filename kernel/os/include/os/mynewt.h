@@ -33,4 +33,6 @@
 #include "logcfg/logcfg.h"
 #endif
 
+extern uint8_t red_two_hz;
+
 #endif
