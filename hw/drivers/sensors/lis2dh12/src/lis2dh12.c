@@ -1134,9 +1134,11 @@ init_intpin(struct lis2dh12 *lis2dh12, int int_num, hal_gpio_irq_handler_t handl
 
     pin = lis2dh12->sensor.s_itf.si_ints[int_num].host_pin;
     if (pin >= 0) {
-        if (lis2dh12->sensor.s_itf.si_ints[int_num].active) {
+        if (HAL_GPIO_TRIG_RISING == lis2dh12->sensor.s_itf.si_ints[int_num].active) {
             trig = HAL_GPIO_TRIG_RISING;
-        } else {
+        } else if (HAL_GPIO_TRIG_BOTH == lis2dh12->sensor.s_itf.si_ints[int_num].active) {
+            trig = HAL_GPIO_TRIG_BOTH;
+        } else {                              // [20-1020] previous catch-all left in place to set trig safely if .active was undefined
             trig = HAL_GPIO_TRIG_FALLING;
         }
 
