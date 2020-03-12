@@ -89,6 +89,7 @@ struct lps33hw_cfg {
     enum lps33hw_low_pass_config lpf;
     unsigned int autozero : 1;
     unsigned int autorifp : 1;
+    unsigned int low_current_en: 1;
     uint8_t fifo_wtm;
     enum lps33hw_read_mode read_mode;
 };

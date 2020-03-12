@@ -1066,6 +1066,13 @@ lps33hw_config(struct lps33hw *lps, struct lps33hw_cfg *cfg)
     }
     lps->cfg.lpf = cfg->lpf;
 
+    rc = lps33hw_set_value(itf, LPS33HW_CTRL_RES_CONF_LC_EN,
+                cfg->low_current_en);
+    if (rc) {
+        return rc;
+    }
+    lps->cfg.low_current_en = cfg->low_current_en;
+
     /* Configure FIFO watermark */
     rc = lps33hw_set_value(itf, LPS33HW_FIFO_WTM_THR, cfg->fifo_wtm);
     if (rc) {
